@@ -1,0 +1,113 @@
+/*
+    Citation: Google Protobuf documentation and blockchain  open community
+    Final Project CS5600
+    Authors: Akshaya Khare, Rishab Khandelwal, Sarita Joshi
+*/
+
+syntax = "proto2";
+package miniblockchaindb;
+/*
+    The idea for the exposable api is taken from
+    https://github.com/topics/blockchain-technology
+    https://www.bigchaindb.com/whitepaper/bigchaindb-whitepaper.pdf
+    Our implementation of the MiniBlockchain can be implemented
+    further and scaled to perform below supported API based transactions
+    We are new to Google protobuf, the idea is taken from various examples
+    and tutorials available in the block chain community.
+    We simulate the blockchain operations using simple banking transaction, just
+    like bitcoin
+*/
+// Interface exported by the server.
+service BlockChainMiner {
+    // Given a user id, this will return the balance for it.
+    // Pending or non-mined transactions are ignored
+	rpc Get(GetRequest) returns (GetResponse) {}
+
+    // Given a transaction, we use grpc to broadcast the transaction to n number of servers
+    // registered to the network.
+    // If an dscrepancy, a boolean false is returned
+	rpc Transfer(Transaction) returns (BooleanResponse) {}
+
+    // This is the verification api. If any invalid transaction happens or if we query
+    // a transaction that is pending, false response is returned
+	rpc Verify(Transaction) returns (VerifyResponse) {}
+
+    // Follow https://insight.bitpay.com/api
+    // This returns the height of the mini-blockchain
+	rpc GetHeight(Null) returns (GetHeightResponse) {}
+
+    // Sends a JSON response of the entire block
+    // Input to this should be a valid block hash (unique identifier)
+    // or else a empty JSON is returned
+	rpc GetBlock(GetBlockRequest) returns (JsonBlockString) {}
+
+    // Called in the miner functionality to push the block to all
+    // the registered servers.
+	rpc PushBlock(JsonBlockString) returns (Null) {}
+
+    // Called in the miner functionality to push the mined transaction to all
+    // the registered servers.
+	rpc PushTransaction(Transaction) returns (Null) {}
+}
+
+/*
+    Followed as per the protobuf google tutorial
+*/
+message GetRequest {
+	required string UserID = 1;
+}
+
+message GetResponse {
+ required  int32 Value = 1;
+}
+
+message GetBlockRequest {
+	required string BlockHash = 1;
+}
+
+message VerifyResponse {
+	enum Results {
+		FAILED = 0;
+		PENDING = 1;
+		SUCCEEDED = 2;
+	}
+	required Results Result = 1;
+	required string BlockHash = 2;
+}
+
+message BooleanResponse {
+	required bool Success = 1;
+}
+
+message GetHeightResponse {
+  required int32 Height = 1;
+  required string LeafHash = 2;
+}
+
+message Null {}
+message Block {
+	required int32 BlockID = 1;
+	required string PrevHash = 2;
+	repeated Transaction Transactions = 3;
+	required string MinerID = 4;
+	required string Nonce = 5;
+}
+
+// Check the auto generated db.go file
+// Transaction type supported for now is "Transfer"
+message Transaction {
+	enum Types {
+		UNKNOWN = 0;
+		TRANSFER = 5;
+	}
+	required Types Type = 1;
+	required string FromID = 3;
+	required string ToID = 4;
+	required int32 Value = 5;
+	required int32 MiningFee = 6;
+	required string UUID = 7;
+}
+
+message JsonBlockString {
+	required string Json = 1;
+}

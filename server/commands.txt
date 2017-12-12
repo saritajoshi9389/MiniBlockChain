@@ -1,0 +1,35 @@
+curl -X POST -H "Content-Type: application/json" -d '{"nodes": ["http://localhost:50003","http://localhost:50002"]}' http://localhost:50001/nodes/register
+
+curl -X GET http://localhost:50001/nodes
+
+
+var t1 p_b.Transaction
+
+t1.Type = create_cust(p_b.Transaction_TRANSFER)
+t1.FromID = create_string("someUUID")
+t1.ToID = create_string("someotherUUID")
+t1.Value = create(30)
+t1.MiningFee = create(10)
+t1.UUID = create_string("myUUID")
+var t2 TransactionsList
+t2 = append(t2,&t1)
+t2 = append(t2,&t1)
+logger.Info("Trans???",t2)
+logger.Info("type offffffffffffffffffffff%T",t2)
+miner.insertTxs(&t2)
+
+// Test Code
+	var testData *list.List
+	testData = list.New()
+	
+	var t1 p_b.Transaction
+
+	t1.Type = create_cust(p_b.Transaction_TRANSFER)
+	t1.FromID = create_string("someUUID")
+	t1.ToID = create_string("someotherUUID")
+	t1.Value = create(30)
+	t1.MiningFee = create(10)
+	t1.UUID = create_string("myUUID")
+	testData.PushBack(&t1)
+	miner.insertTxs(testData)
+	//Test Code ends

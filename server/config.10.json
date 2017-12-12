@@ -1,0 +1,53 @@
+{
+    "count": 10, 
+    "1": {
+        "data_directory_temp": "/tmp/mini_blockchain/1/", 
+        "server_port": "5001", 
+        "server_ip": "localhost"
+    }, 
+    "2": {
+        "data_directory_temp": "/tmp/mini_blockchain/2/", 
+        "server_port": "5002", 
+        "server_ip": "localhost"
+    }, 
+    "3": {
+        "data_directory_temp": "/tmp/mini_blockchain/3/", 
+        "server_port": "5003", 
+        "server_ip": "localhost"
+    }, 
+    "4": {
+        "data_directory_temp": "/tmp/mini_blockchain/4/", 
+        "server_port": "5004", 
+        "server_ip": "localhost"
+    }, 
+    "5": {
+        "data_directory_temp": "/tmp/mini_blockchain/5/", 
+        "server_port": "5005", 
+        "server_ip": "localhost"
+    }, 
+    "6": {
+        "data_directory_temp": "/tmp/mini_blockchain/6/", 
+        "server_port": "5006", 
+        "server_ip": "localhost"
+    }, 
+    "7": {
+        "data_directory_temp": "/tmp/mini_blockchain/7/", 
+        "server_port": "5007", 
+        "server_ip": "localhost"
+    }, 
+    "8": {
+        "data_directory_temp": "/tmp/mini_blockchain/8/", 
+        "server_port": "5008", 
+        "server_ip": "localhost"
+    }, 
+    "9": {
+        "data_directory_temp": "/tmp/mini_blockchain/9/", 
+        "server_port": "5009", 
+        "server_ip": "localhost"
+    }, 
+    "10": {
+        "data_directory_temp": "/tmp/mini_blockchain/10/", 
+        "server_port": "5010", 
+        "server_ip": "localhost"
+    }
+}
