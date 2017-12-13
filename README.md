@@ -4,12 +4,12 @@
 Proto file generation    
 protoc -I ./ --python_out=. --grpc_out=. --plugin=protoc-gen-grpc=`grpc` ./db.proto
 
-###Prerequisite:   
-    - Go installed and gopath/gobin appropriately set
-    - google protobuf installed
-    - Python 2.7/2.9
-    - FUSE installed
-    - All python dependencies can be installed using requirements.txt
+###Prerequisite:      
+    - Go installed and gopath/gobin appropriately set     
+    - google protobuf installed      
+    - Python 2.7/2.9      
+    - FUSE installed      
+    - All python dependencies can be installed using requirements.txt       
     
 
 ### How to run:
